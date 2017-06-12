@@ -9,7 +9,7 @@ AFRAME.registerComponent('garland', {
   },
   init: function () {
     var element = this.el,
-      delay = 3000,
+      delay = this.data.delay || 2000,
       colors = this.data.colors || ['red', 'cyan', 'blue', 'yellow'];
 
     setInterval(function () {
