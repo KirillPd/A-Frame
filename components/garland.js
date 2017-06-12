@@ -8,34 +8,29 @@ AFRAME.registerComponent('garland', {
     }
   },
   init: function () {
-    var sceneEl = document.querySelector('a-scene'),
-      elements = sceneEl.querySelectorAll('[garland]'),
-      delay = this.data.delay || 0,
+    var element = this.el,
+      delay = 3000,
       colors = this.data.colors || ['red', 'cyan', 'blue', 'yellow'];
 
-    for (var i = 0; i < elements.length; i++) {
-      (function (i) {
-        setInterval(function () {
-          let colorId = calcRandom(colors.length, 0),
-            currentColor = elements[i].getAttribute('material').color,
-            newColor = colors[colorId];
+    setInterval(function () {
+      let colorId = calcRandom(colors.length, 0),
+        currentColor = element.getAttribute('material').color,
+        newColor = colors[colorId];
 
-          while (true) {
-            if (currentColor === newColor) {
-              colorId = calcRandom(colors.length, 0);
-              newColor = colors[colorId];
-            } else {
-              break;
-            }
-          };
+      while (true) {
+        if (currentColor === newColor) {
+          colorId = calcRandom(colors.length, 0);
+          newColor = colors[colorId];
+        } else {
+          break;
+        }
+      };
 
-          elements[i].setAttribute('material', 'color', colors[colorId]);
-        }, delay);
-      })(i);
-    }
+      element.setAttribute('material', 'color', newColor);
+    }, delay);
 
     function calcRandom(max, min) {
-      return Math.round(Math.random() * (max - min)) + min;
+      return Math.round(Math.random() * (max - 1 - min)) + min;
     }
   }
 });
