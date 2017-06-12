@@ -1,0 +1,3 @@
+AFRAME.registerComponent('christmas-trees', {
+  // ...
+});

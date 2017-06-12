@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VR</title>
+  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.9/dist/aframe-particle-system-component.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="logo" src="just-coded.jpg" />
+    </a-assets>
+    <a-entity particle-system="preset: snow; particleCount: 5000" position="0 0.3 -3"></a-entity>
+    <a-box depth="1" width="1.5" height="0.5" material="shader: flat; src: #logo" position="1.06 0.242 -3.096"></a-box>
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="50" height="50" color="#fff"></a-plane>
+
+    <a-entity position="0.165 2.328 -4.37" rotation="0 0 0" scale="1 1 1" visible="true" material="color:green" geometry="primitive:cone;skipCache:false;radiusTop:0;radiusBottom:0.8;segmentsHeight:20;height:1"></a-entity>
+    <a-entity position="0.183 1.003 -4.388" rotation="0 0 0" scale="1 1 1" visible="true" material="color:green" geometry="primitive:cone;skipCache:false;radiusTop:0.4;segmentsHeight:14;radiusBottom:1.3"></a-entity>
+    <a-entity position="0.169 1.685 -4.357" rotation="0 0 0" scale="1 1 1" visible="true" material="color:green" geometry="primitive:cone;skipCache:false;radiusTop:0.2;segmentsHeight:14"></a-entity>
+    <a-entity position="0.159 0.264 -4.314" rotation="0 0 0" scale="1 1 1" visible="true" material="color:#804000"
+      geometry="primitive:cylinder;skipCache:false;radiusTop:0.3;segmentsHeight:14;radius:0.3;height:0.5"></a-entity>
+
+    <a-entity position="0.103 0.465 3.108" camera="active: false; near: 1.005; userHeight: 1.6" aframe-injected="" data-aframe-inspector="default-camera">
+    </a-entity>
+    <a-sky color="#ECECEC"></a-sky>
+  </a-scene>
+</body>
+
+</html>
