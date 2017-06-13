@@ -49,7 +49,7 @@
     <a-entity garland position="-0.474 0.831 -5.243" rotation="0 0 0" material="color:blue" geometry="primitive:sphere; radius:0.05"></a-entity>
     <!--third row ends-->
     <!--garlands end-->
-    <!--<a-entity particle-system="preset: snow; particleCount: 5000" position="0 0.3 -3"></a-entity>-->
+    <a-entity particle-system="preset: snow; particleCount: 5000" position="0 0.3 -3"></a-entity>
     <a-box event-set__down="_event: mousedown; visible: false"
       depth="1" width="1.5" height="0.5" material="shader: flat; src: #logo" position="1.06 0.242 -3.096"></a-box>
     <a-sphere radius="0.2" material="shader: flat; src: #ball" position="1.06 0.242 -3.096"></a-sphere>
@@ -61,7 +61,7 @@
     <a-entity position="0.159 0.264 -4.314" rotation="0 0 0" scale="1 1 1" visible="true" material="color:#804000" geometry="primitive:cylinder;skipCache:false;radiusTop:0.3;segmentsHeight:14;radius:0.3;height:0.5"></a-entity>
 
     <a-camera>
-      <a-cursor></a-cursor>
+      <!--<a-cursor></a-cursor>-->
     </a-camera>
     <a-sky color="#ECECEC"></a-sky>
   </a-scene>
