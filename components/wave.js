@@ -7,6 +7,14 @@ AFRAME.registerComponent('wave', {
     elements: {
       type: 'number',
       default: 5
+    },
+    grow: {
+      type: 'number',
+      default: 1.2
+    },
+    invertScale: {
+      type: 'boolean',
+      default: false
     }
   },
   init: function () {
@@ -67,23 +75,31 @@ AFRAME.registerComponent('wave', {
   renderDots: function (el) {
     var rows = this.data.rows,
       elements = this.data.elements,
+      growDelta = this.data.grow,
       geometry = el.getAttribute('geometry'),
       widthStepValue = geometry.width / rows,
       depthStepValue = geometry.depth / elements,
       allDots = "",
+      animationScale = "",
       positionX,
       positionY;
+    
+    if (this.data.invertScale) {
+      animationScale = "from: 2 2 2; to: 0.5 0.5 0.5;"
+    } else {
+      animationScale = "to: 2 2 2; from: 0.5 0.5 0.5;"
+    }
 
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < elements; j++) {
         positionX = i * widthStepValue;
         positionY = j * depthStepValue;
 
-        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + this.calcPositionY(i, j, elements) + ' ' + positionY + '\"' +
-          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200; to: 3.5 3.5 3.5; loop: true; delay:' + j * 300 + '\" ' +
+        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + growDelta + ' ' + positionY + '\"' +
+          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
           'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1200; ' +
-          'from: ' + positionX + ' ' + this.calcPositionY(i, j, elements) + ' ' + positionY + '; ' +
-          'to: ' + positionX + ' ' + this.calcPositionY(i, j, elements) * 2+ ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
+          'from: ' + positionX + ' ' + growDelta + ' ' + positionY + '; ' +
+          'to: ' + positionX + ' ' + growDelta * 2 + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
           '</a-entity >';
       }
     }
