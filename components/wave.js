@@ -60,7 +60,6 @@ AFRAME.registerComponent('wave', {
     el.insertAdjacentHTML('afterBegin', this.renderDots(el));
   },
   deleteDots: function (el) {
-
     while (el.firstChild) {
       el.removeChild(el.firstChild);
     }
@@ -80,19 +79,21 @@ AFRAME.registerComponent('wave', {
         positionX = i * widthStepValue;
         positionY = j * depthStepValue;
 
-        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' 0 ' + positionY + '\"' +
-          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1500; to: 2 2 2; loop: true; delay:' + j * 300 + '\" ' +
-          'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1500; to: ' +
-          +positionX + ' 1.8 ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
+        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + this.calcPositionY(i, j, elements) + ' ' + positionY + '\"' +
+          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200; to: 3.5 3.5 3.5; loop: true; delay:' + j * 300 + '\" ' +
+          'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1200; ' +
+          'from: ' + positionX + ' ' + this.calcPositionY(i, j, elements) + ' ' + positionY + '; ' +
+          'to: ' + positionX + ' ' + this.calcPositionY(i, j, elements) * 2+ ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
           '</a-entity >';
-
-        // allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' 0 ' + positionY + '\">' +
-        //   '<a-animation attribute=\"position\" duration=\"1000\" to=\"' + positionX + ' 2.3 ' + positionY + '\" delay=\"' + j * 250 + '\" easing=\"ease-in-out-cubic\" repeat=\"indefinite\" direction=\"alternate\"></a-animation>' +
-        //   '<a-animation attribute=\"scale\" duration=\"1000\" to=\"1.5 1.5 1.5\" delay=\"' + j * 250 + ' easing=\"ease-in-out-quad\" repeat=\"indefinite\" direction=\"alternate\"></a-animation>' +
-        //   '</a-entity >';
       }
     }
 
     return allDots;
+  },
+  calcPositionY: function (rowNumber, elementNumber, elements) {
+    // if (rowNumber >= elements / 2) {
+    //   return (rowNumber + elementNumber * 0.01) % (elements / 4);
+    // }
+    return 1.1;
   }
 });
