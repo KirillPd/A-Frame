@@ -9,18 +9,52 @@ AFRAME.registerComponent('wave', {
       default: 5
     }
   },
-  update: function () {
-    var el = this.el;
-    this.initWave(el);
-    this.addActiveTabEvents(el, this.initWave.bind(this), this.deleteDots.bind(this));
+  init: function () {
+    var el = this.el,
+      pageVisibility = this.setVisibilityProperties(),
+      self = this,
+      handleVisibilityChange;
+
+    handleVisibilityChange = function () {
+      if (document[pageVisibility.hidden]) {
+        self.deleteDots(el);
+      } else {
+        self.initWave(el);
+      }
+    }
+
+    self.initWave(el);
+    self.addVisibilityListener(pageVisibility, handleVisibilityChange);
   },
-  addActiveTabEvents: function (el, onFocus, onBlur) {
-    window.addEventListener('focus', () => {
-      onFocus(el);
-    });
-    window.addEventListener('blur', () => {
-      onBlur(el);
-    });
+  // Set the name of the hidden property and the change event for visibility
+  setVisibilityProperties: function () {
+    var hidden, visibilityChange;
+    if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support 
+      hidden = 'hidden';
+      visibilityChange = 'visibilitychange';
+    } else if (typeof document.msHidden !== 'undefined') {
+      hidden = 'msHidden';
+      visibilityChange = 'msvisibilitychange';
+    } else if (typeof document.webkitHidden !== 'undefined') {
+      hidden = 'webkitHidden';
+      visibilityChange = 'webkitvisibilitychange';
+    }
+
+    return {
+      'hidden': hidden,
+      'visibilityChange': visibilityChange
+    };
+  },
+  addVisibilityListener: function (pageVisibility, handleVisibilityChange) {
+    // Warn if the browser doesn't support addEventListener or the Page Visibility API
+    if (typeof document.addEventListener === 'undefined' || typeof document[pageVisibility.hidden] === 'undefined') {
+      console.log('This page requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.');
+    } else {
+      // Handle page visibility change
+      document.addEventListener(pageVisibility.visibilityChange, function () {
+        handleVisibilityChange();
+      });
+    }
   },
   initWave: function (el) {
     el.insertAdjacentHTML('afterBegin', this.renderDots(el));
