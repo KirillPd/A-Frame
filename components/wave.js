@@ -9,15 +9,32 @@ AFRAME.registerComponent('wave', {
       default: 5
     }
   },
-  init: function () {
-    var element = this.el;
-
-    element.insertAdjacentHTML('afterBegin', this.renderDots());
+  update: function () {
+    var el = this.el;
+    this.initWave(el);
+    this.addActiveTabEvents(el, this.initWave.bind(this), this.deleteDots.bind(this));
   },
-  renderDots: function () {
+  addActiveTabEvents: function (el, onFocus, onBlur) {
+    window.addEventListener('focus', () => {
+      onFocus(el);
+    });
+    window.addEventListener('blur', () => {
+      onBlur(el);
+    });
+  },
+  initWave: function (el) {
+    el.insertAdjacentHTML('afterBegin', this.renderDots(el));
+  },
+  deleteDots: function (el) {
+
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
+  },
+  renderDots: function (el) {
     var rows = this.data.rows,
       elements = this.data.elements,
-      geometry = this.el.getAttribute('geometry'),
+      geometry = el.getAttribute('geometry'),
       widthStepValue = geometry.width / rows,
       depthStepValue = geometry.depth / elements,
       allDots = "",
@@ -30,9 +47,9 @@ AFRAME.registerComponent('wave', {
         positionY = j * depthStepValue;
 
         allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' 0 ' + positionY + '\"' +
-          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 1.5 1.5 1.5; loop: true; delay:' + j * 250 + '\" ' +
-          'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: ' +
-            + positionX + ' 2.3 ' + positionY +'; loop: true; delay:' + j * 250 + '\">' +
+          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1500; to: 2 2 2; loop: true; delay:' + j * 300 + '\" ' +
+          'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1500; to: ' +
+          +positionX + ' 1.8 ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
           '</a-entity >';
 
         // allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' 0 ' + positionY + '\">' +
