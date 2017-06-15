@@ -79,6 +79,7 @@ AFRAME.registerComponent('wave', {
       allDots = "",
       animationScale = "",
       scale = "",
+      delay = 0,
       positionX,
       positionY;
 
@@ -87,15 +88,16 @@ AFRAME.registerComponent('wave', {
         counter = Math.sin(i)* 3.5;
         animationScale = "from: 0.25 0.25 0.25; to: 1.7 1.7 1.7;";
         scale = "0.25 0.25 0.25";
+        delay = (elements - j) * 300;
 
         positionX = i * widthStepValue;
         positionY = j * depthStepValue;
 
         allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + counter * 0.12 + ' ' + positionY + '\" scale=\"' + scale + '\"' +
-          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1450;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
+          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1450;' + animationScale + ' loop: true; delay:' + delay + '\" ' +
           'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1450; ' +
           'from: ' + positionX + ' ' + counter * 0.12 + ' ' + positionY + '; ' +
-          'to: ' + positionX + ' ' + (growDelta + counter * 0.12) + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
+          'to: ' + positionX + ' ' + (growDelta + counter * 0.12) + ' ' + positionY + '; loop: true; delay:' + delay + '\">' +
           '</a-entity >';
       }
     }
