@@ -15,8 +15,8 @@
 <body>
   <a-scene stats>
     <a-assets>
-      <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
-      <a-asset-item id="logo" src="logo.ply"></a-asset-item>
+      <!--<img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">-->
+      <!--<a-asset-item id="logo" src="logo.ply"></a-asset-item>-->
       <a-mixin id="dot" geometry="primitive: sphere; radius: 0.03" material="color: #7a7b7e; shader: flat"></a-mixin>
     </a-assets>s
      <!--<a-entity ply-model="src: #logo" rotation="-90 0 0" scale="0.1 0.1 0.1">s</a-entity>-->
@@ -24,7 +24,7 @@
     <!--<a-cylinder id="ground" color="#1A1B1E" shader="flat" height="0.1"></a-cylinder>-->
     <!--<a-sky id="background" src="#skyTexture" theta-length="90" radius="30"></a-sky>-->
     <a-sky id="background" color="#1A1B1E" shader="flat"></a-sky>
-    <a-entity id="wave-1" geometry="depth: 15; height: 0; width: 15" wave="rows: 20; elements: 20; grow: 0.8" position="-6 3 -9.474"
+    <a-entity id="wave-1" geometry="depth: 15; height: 0; width: 15" wave="rows: 20; elements: 20; grow: 1.1" position="-6 3 -9.474"
       material="visible: false" rotation="0 0 0" animation__rotation="property: rotation; easing: easeInOutQuad; dir: alternate; dur: 6200; from: 0 0 0; to: 0 -10 0; loop: true"></a-entity>
     <a-camera position="-3.095 7.5 0.368" rotation="-42.521 -48.925 0"></a-camera>
   </a-scene>

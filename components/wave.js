@@ -11,10 +11,6 @@ AFRAME.registerComponent('wave', {
     grow: {
       type: 'number',
       default: 1.2
-    },
-    invertScale: {
-      type: 'boolean',
-      default: false
     }
   },
   init: function () {
@@ -82,26 +78,24 @@ AFRAME.registerComponent('wave', {
       depthStepValue = geometry.depth / elements,
       allDots = "",
       animationScale = "",
+      scale = "",
       positionX,
       positionY;
-    
-    if (this.data.invertScale) {
-      animationScale = "from: 2 2 2; to: 0.5 0.5 0.5;"
-    } else {
-      animationScale = "to: 1.5 1.5 1.5; from: 0.25 0.25 0.25;"
-    }
 
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < elements; j++) {
-        var counter = j > elements / 2 ? elements - j : j * 1.1;
+        counter = Math.sin(i)* 3.5;
+        animationScale = "from: 0.25 0.25 0.25; to: 1.7 1.7 1.7;";
+        scale = "0.25 0.25 0.25";
+
         positionX = i * widthStepValue;
         positionY = j * depthStepValue;
 
-        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + growDelta + ' ' + positionY + '\" scale=\"0.25 0.25 0.25\"' +
+        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + counter * 0.12 + ' ' + positionY + '\" scale=\"' + scale + '\"' +
           'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
           'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1200; ' +
-          'from: ' + positionX + ' ' + growDelta + ' ' + positionY + '; ' +
-          'to: ' + positionX + ' ' + (growDelta + counter * 0.16) + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
+          'from: ' + positionX + ' ' + counter * 0.12 + ' ' + positionY + '; ' +
+          'to: ' + positionX + ' ' + (growDelta + counter * 0.12) + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
           '</a-entity >';
       }
     }
