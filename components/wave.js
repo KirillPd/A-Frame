@@ -92,8 +92,8 @@ AFRAME.registerComponent('wave', {
         positionY = j * depthStepValue;
 
         allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + counter * 0.12 + ' ' + positionY + '\" scale=\"' + scale + '\"' +
-          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
-          'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1200; ' +
+          'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1450;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
+          'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1450; ' +
           'from: ' + positionX + ' ' + counter * 0.12 + ' ' + positionY + '; ' +
           'to: ' + positionX + ' ' + (growDelta + counter * 0.12) + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
           '</a-entity >';
