@@ -31,6 +31,7 @@ AFRAME.registerComponent('wave', {
       }
     }
 
+    self.deleteDots(el);
     self.initWave(el);
     self.addVisibilityListener(pageVisibility, handleVisibilityChange);
   },
@@ -87,7 +88,7 @@ AFRAME.registerComponent('wave', {
     if (this.data.invertScale) {
       animationScale = "from: 2 2 2; to: 0.5 0.5 0.5;"
     } else {
-      animationScale = "to: 2 2 2; from: 0.5 0.5 0.5;"
+      animationScale = "to: 1.5 1.5 1.5; from: 0.25 0.25 0.25;"
     }
 
     for (var i = 0; i < rows; i++) {
@@ -95,7 +96,7 @@ AFRAME.registerComponent('wave', {
         positionX = i * widthStepValue;
         positionY = j * depthStepValue;
 
-        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + growDelta + ' ' + positionY + '\"' +
+        allDots += '<a-entity mixin=\"dot\" position=\"' + positionX + ' ' + growDelta + ' ' + positionY + '\" scale=\"0.25 0.25 0.25\"' +
           'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
           'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1200; ' +
           'from: ' + positionX + ' ' + growDelta + ' ' + positionY + '; ' +
