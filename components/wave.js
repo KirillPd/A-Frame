@@ -93,6 +93,7 @@ AFRAME.registerComponent('wave', {
 
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < elements; j++) {
+        var counter = j > elements / 2 ? elements - j : j * 1.1;
         positionX = i * widthStepValue;
         positionY = j * depthStepValue;
 
@@ -100,7 +101,7 @@ AFRAME.registerComponent('wave', {
           'animation__scale=\"property: scale; easing: easeInOutQuad; dir: alternate; dur: 1200;' + animationScale + ' loop: true; delay:' + j * 300 + '\" ' +
           'animation__jump=\"property: position; easing: easeInOutQuad; dir: alternate; dur: 1200; ' +
           'from: ' + positionX + ' ' + growDelta + ' ' + positionY + '; ' +
-          'to: ' + positionX + ' ' + growDelta * 2 + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
+          'to: ' + positionX + ' ' + (growDelta + counter * 0.16) + ' ' + positionY + '; loop: true; delay:' + j * 300 + '\">' +
           '</a-entity >';
       }
     }
@@ -111,6 +112,7 @@ AFRAME.registerComponent('wave', {
     // if (rowNumber >= elements / 2) {
     //   return (rowNumber + elementNumber * 0.01) % (elements / 4);
     // }
-    return 1.1;
+    // return 1.1;
+    return (rowNumber + elementNumber * 0.01) % (elements / 4);
   }
 });
