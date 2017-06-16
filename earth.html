@@ -24,7 +24,7 @@
     <!--<a-sky id="background" src="#space" theta-length="90" radius="60"></a-sky>-->
     <a-sky id="background" color="#000" shader="flat"></a-sky>
     <a-camera position="-19.332 4.387 -33.698" rotation="-15.707 -147.474a 0"></a-camera>
-    <a-videosphere src="#earth" radius="20" geometry="phiStart: 120" material="side: back"></a-videosphere>
+    <a-videosphere src="#earth" radius="20" geometry="phiStart: 120" material="side: back" animation__rotation="property: rotation; dur: 20000; easing: linear; from: 0 0 0; to: 0 720 0; dir: reverse; loop: true"></a-videosphere>
     <a-videosphere src="#video" radius="100" geometry="phiStart: 220"></a-videosphere>
   </a-scene>
 </body>
