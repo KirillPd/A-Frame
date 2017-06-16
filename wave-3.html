@@ -8,6 +8,7 @@
   <title>VR</title>
   <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
   <script src="./components/wave.js"></script>
 </head>
 
@@ -16,13 +17,13 @@
     <a-assets>
       <img id="space" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
       <!--<a-asset-item id="logo" src="logo.ply"></a-asset-item>-->
-      <a-mixin id="dot" geometry="primitive: box; depth: 0.2; height: 0.2; width: 0.2" material="color: #fff;" animation__rotation="property: rotation; easing: easeInOutQuad; dir: reverse; dur: 6200; from: 0 0 0; to: 0 280 0; loop: true"></a-mixin>
+      <a-mixin id="dot" geometry="primitive: sphere; radius:0.2; depth: 0.2; height: 0.2; width: 0.2" random-color animation__rotation="property: rotation; easing: easeInOutQuad; dir: reverse; dur: 6200; from: 0 0 0; to: 0 280 0; loop: true"></a-mixin>
     </a-assets>
      <!--<a-entity ply-model="src: #logo" rotation="-90 0 0" scale="0.1 0.1 0.1"></a-entity>-->
-    <a-cylinder id="ground" color="#000" shader="flat" radius="60" height="0.1"></a-cylinder>
-    <a-sky id="background" src="#space" theta-length="90" radius="60"></a-sky>
+    <!--<a-cylinder id="ground" color="#000" shader="flat" radius="60" height="0.1"></a-cylinder>-->
+    <!--<a-sky id="background" src="#space" theta-length="90" radius="60"></a-sky>-->
     <!--<a-sky id="background" color="#1A1B1E" shader="flat"></a-sky>-->
-    <a-entity id="wave-1" geometry="depth: 15; height: 0; width: 15" wave="rows: 20; elements: 10; grow: 1.1" position="-6 3 -9.474"
+    <a-entity id="wave-1" geometry="depth: 15; height: 0; width: 15" wave="rows: 20; elements: 10; grow: 1" position="-6 3 -9.474"
       material="visible: false" rotation="0 0 0" animation__rotation="property: rotation; easing: easeInOutQuad; dir: alternate; dur: 6200; from: 0 0 0; to: 0 -10 0; loop: true"></a-entity>
     <a-camera position="-3.095 7.5 0.368" rotation="-42.521 -54.196 0"></a-camera>
   </a-scene>
