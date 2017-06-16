@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VR</title>
+  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+  <script src="./components/wave.js"></script>
+</head>
+
+<body>
+  <a-scene stats>
+    <a-assets>
+      <img id="model" src="./model/lopan.3.dae">
+    </a-assets>
+    <a-collada-model src="#model"></a-collada-model>
+    <a-cylinder id="ground" color="#1A1B1E" shader="flat" radius="32" height="0.1"></a-cylinder>
+    <a-sky id="background" color="#1A1B1E" shader="flat"></a-sky>
+    <a-camera position="-9.735 1.600 -9.311" rotation="-5.393 -98.887 0"></a-camera>
+  </a-scene>
+</body>
+
+</html>
