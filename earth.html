@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VR</title>
+  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+  <script src="./components/wave.js"></script>
+</head>
+
+<body>
+  <a-scene stats>
+    <a-assets>
+      <!--<img id="space" src="https://cdn.aframe.io/a-painter/images/sky.jpg">-->
+      <!--<a-asset-item id="logo" src="logo.ply"></a-asset-item>-->
+      <video id="earth" autoplay loop="true" src="earth.mp4"></video>
+      <video id="video" autoplay loop="true" src="videoplayback.mp4"></video>
+    </a-assets>
+     <!--<a-entity ply-model="src: #logo" rotation="-90 0 0" scale="0.1 0.1 0.1"></a-entity>-->
+    <!--<a-cylinder id="ground" color="#1A1B1E" shader="flat" radius="60" height="0.1"></a-cylinder>-->
+    <!--<a-sky id="background" src="#space" theta-length="90" radius="60"></a-sky>-->
+    <a-sky id="background" color="#000" shader="flat"></a-sky>
+    <a-camera position="-19.332 4.387 -33.698" rotation="-15.707 -147.474a 0"></a-camera>
+    <a-videosphere src="#earth" radius="20" geometry="phiStart: 120" material="side: back"></a-videosphere>
+    <a-videosphere src="#video" radius="100" geometry="phiStart: 220"></a-videosphere>
+  </a-scene>
+</body>
+
+</html>

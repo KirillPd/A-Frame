@@ -13,7 +13,7 @@ AFRAME.registerComponent('wave', {
       default: 1.2
     }
   },
-  init: function () {
+  update: function () {
     var el = this.el,
       pageVisibility = this.setVisibilityProperties(),
       self = this,
